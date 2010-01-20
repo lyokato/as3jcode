@@ -18,11 +18,25 @@ package org.coderepos.text.encoding
             return (new UTF8Validator(new IS_HIRAGANA())).validate(b);
         }
 
+        public static function is_zenkaku_katakana(utf8string:String):Boolean
+        {
+            var b:ByteArray = new ByteArray();
+            b.writeUTFBytes(utf8string);
+            return (new UTF8Validator(new IS_ZENKAKU_KATAKANA())).validate(b);
+        }
+
+        public static function is_hankaku_katakana(utf8string:String):Boolean
+        {
+            var b:ByteArray = new ByteArray();
+            b.writeUTFBytes(utf8string);
+            return (new UTF8Validator(new IS_HANKAKU_KATAKANA())).validate(b);
+        }
+
         public static function is_katakana(utf8string:String):Boolean
         {
             var b:ByteArray = new ByteArray();
             b.writeUTFBytes(utf8string);
-            var rules:IRule = new Rules(new OR(new IS_HANKAKU_KATAKANA(), new IS_ZENKAKU_KATAKANA()));
+            var rules:IRule = new Rules(new IS_HANKAKU_KATAKANA(), new IS_ZENKAKU_KATAKANA());
             return (new UTF8Validator(rules)).validate(b);
         }
 

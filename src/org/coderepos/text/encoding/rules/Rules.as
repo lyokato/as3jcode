@@ -4,11 +4,13 @@ package org.coderepos.text.encoding.rules
     {
         private var _rules:Array; // Vector.<IRule>
 
-        public function Rules(rule:IRule=null)
+        //public function Rules(rule:IRule=null)
+        public function Rules(...args:Array)
         {
             _rules = [];
-            if (rule != null)
-                _rules.push(rule);
+            var len:int = args.length;
+            for (var i:int = 0; i < len; i++)
+                _rules.push(args[i]);
         }
 
         public function add(rule:IRule):void
@@ -20,10 +22,10 @@ package org.coderepos.text.encoding.rules
         {
             var len:int = _rules.length;
             for (var i:int = 0; i < len; i++) {
-                if (!(_rules[i].validate(unicode)))
-                    return false;
+                if (_rules[i].validate(unicode))
+                    return true;
             }
-            return true;
+            return false;
         }
     }
 }
