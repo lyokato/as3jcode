@@ -1,0 +1,90 @@
+as3jcode
+
+I don't believe in ByteArray.readMultiByte/writeMultiByte
+
+= Author
+
+Lyo Kato, <lyo.kato@gmail.com>
+
+= License
+
+MIT-License
+
+= Usage
+
+import org.coderepos.text.encoding.Jcode;
+
+var utf8Bytes:ByteArray = new ByteArray();
+utf8Bytes.writeUTFBytes("にほんご");
+
+// convert to EUC-JP byte code
+var eucBytes:ByteArray = Jcode.utf8_euc(utf8Bytes);
+
+// convert to ISO-2022-JP byte code
+var jisBytes:ByteArray = Jcode.utf8_jis(utf8Bytes);
+
+// convert to Shift_JIS byte code
+var jisBytes:ByteArray = Jcode.utf8_sjis(utf8Bytes);
+
+// convert to UTF-16 byte code
+var utf16Bytes:ByteArray = Jcode.utf8_utf16(utf8Bytes);
+
+// with BOM that represents Big Endian
+var utf16Bytes:ByteArray = Jcode.utf8_utf16be(utf8Bytes);
+
+utf8Bytes  = Jcode.euc_utf8(eucBytes);
+utf8nBytes = Jcode.euc_utf8n(eucBytes);
+utf8Bytes  = Jcode.jis_utf8(jisBytes);
+utf8nBytes = Jcode.jis_utf8n(jisBytes);
+utf8Bytes  = Jcode.sjis_utf8(sjisBytes);
+utf8nBytes = Jcode.sjis_utf8n(sjisBytes);
+
+utf8Bytes  = Jcode.utf16_utf8(sjisBytes);
+utf8nBytes = Jcode.utf16_utf8n(sjisBytes);
+
+jisBytes  = Jcode.euc_jis(eucBytes);
+sjisBytes = Jcode.euc_sjis(eucBytes);
+eucBytes  = Jcode.jis_euc(jisBytes);
+sjisBytes = Jcode.jis_sjis(jisBytes);
+eucBytes  = Jcode.sjis_euc(sjisBytes);
+jisBytes  = Jcode.sjis_jis(sjisBytes);
+
+
+** Short circuit
+
+*** Encoding from UTF-8 ActionScript native string
+
+var utf8Bytes:ByteArray = new ByteArray();
+utf8Bytes.writeUTFBytes("日本語");
+var eucBytes:ByteArray = Jcode.utf8_euc(utf8Bytes);
+
+instread of above 3 line code, you can use to_xxx methods.
+
+var eucBytes:ByteArray  = Jcode.to_euc("日本語");
+var jisBytes:ByteArray  = Jcode.to_jis("日本語");
+var sjisBytes:ByteArray = Jcode.to_sjis("日本語");
+
+*** Decoding to UTF-8 ActionScript native string
+
+var utf8String:String = Jcode.from_euc(eucBytes);
+var utf8String:String = Jcode.from_jis(eucBytes);
+var utf8String:String = Jcode.from_sjis(eucBytes);
+
+
+** Validation
+
+if (Jcode.is_hiragana(utf8string)) {
+
+} else {
+
+}
+
+if (Jcode.is_katakana(utf8string)) {
+
+}
+
+= TODO
+
+Hankaku to Zenkakau, Zenkaku to Hankaku conversion
+Support UTF-16LE, UTF-32, (UTF-7)
+
