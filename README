@@ -70,13 +70,22 @@ var utf8String:String = Jcode.from_euc(eucBytes);
 var utf8String:String = Jcode.from_jis(jisBytes);
 var utf8String:String = Jcode.from_sjis(sjisBytes);
 
-
 ** Katakana
 
 Hankaku to Zenkaku
 
 var utf8String:String = Jcode.h2z("ｱｲｳｴｵ");
 // utf8String should be "アイウエオ".
+
+
+** IMAP-UTF7
+
+// RFC3501 section 5.1.3
+import org.coderepos.text.encoding.IMAP_UTF7;
+
+var encoded:String = IMAP_UTF7.encode("INBOX.日本語");
+// encoded -> 'INBOX.&ZeVnLIqe-'
+var decoded:String = IMAP_UTF7.decode(encoded);
 
 ** Validation
 

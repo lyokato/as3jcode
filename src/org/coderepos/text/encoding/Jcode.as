@@ -12,6 +12,7 @@ package org.coderepos.text.encoding
     {
         public static const VERSION:String = "0.0.1";
 
+        // validation methods
         public static function is_hiragana(utf8string:String):Boolean
         {
             var b:ByteArray = new ByteArray();
