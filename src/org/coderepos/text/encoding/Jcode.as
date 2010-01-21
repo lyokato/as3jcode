@@ -6,6 +6,7 @@ package org.coderepos.text.encoding
     import org.coderepos.text.encoding.converters.*;
     import org.coderepos.text.encoding.rules.*;
     import org.coderepos.text.encoding.validators.*;
+    import org.coderepos.text.encoding.tables.*;
 
     public class Jcode
     {
@@ -38,6 +39,11 @@ package org.coderepos.text.encoding
             b.writeUTFBytes(utf8string);
             var rules:IRule = new Rules(new IS_HANKAKU_KATAKANA(), new IS_ZENKAKU_KATAKANA());
             return (new UTF8Validator(rules)).validate(b);
+        }
+
+        public static function h2z(utf8String:String):String
+        {
+            return from_utf16(H2Z.h2z(to_utf16(utf8String)));
         }
 
         public static function to_utf16(utf8String:String):ByteArray

@@ -58,7 +58,7 @@ var utf8Bytes:ByteArray = new ByteArray();
 utf8Bytes.writeUTFBytes("日本語");
 var eucBytes:ByteArray = Jcode.utf8_euc(utf8Bytes);
 
-instread of above 3 line code, you can use to_xxx methods.
+instread of above 3 lines code, you can use to_xxx methods.
 
 var eucBytes:ByteArray  = Jcode.to_euc("日本語");
 var jisBytes:ByteArray  = Jcode.to_jis("日本語");
@@ -67,24 +67,38 @@ var sjisBytes:ByteArray = Jcode.to_sjis("日本語");
 *** Decoding to UTF-8 ActionScript native string
 
 var utf8String:String = Jcode.from_euc(eucBytes);
-var utf8String:String = Jcode.from_jis(eucBytes);
-var utf8String:String = Jcode.from_sjis(eucBytes);
+var utf8String:String = Jcode.from_jis(jisBytes);
+var utf8String:String = Jcode.from_sjis(sjisBytes);
 
+
+** Katakana
+
+Hankaku to Zenkaku
+
+var utf8String:String = Jcode.h2z("ｱｲｳｴｵ");
+// utf8String should be "アイウエオ".
 
 ** Validation
 
 if (Jcode.is_hiragana(utf8string)) {
 
-} else {
+}
+
+if (Jcode.is_zenkaku_katakana(utf8string)) {
 
 }
 
+if (Jcode.is_hankaku_katakana(utf8string)) {
+
+}
+
+// zenkaku and hankaku katakana
 if (Jcode.is_katakana(utf8string)) {
 
 }
 
 = TODO
 
-Hankaku to Zenkakau, Zenkaku to Hankaku conversion
+Zenkaku to Hankaku conversion (required?)
 Support UTF-16LE, UTF-32, (UTF-7)
 

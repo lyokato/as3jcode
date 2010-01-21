@@ -18,6 +18,7 @@ package suite {
       addTest(UTF82UTF8Test.suite());
       addTest(UTF82UTF16Test.suite());
       addTest(ValidatorTest.suite());
+      addTest(H2ZTest.suite());
     }
   }
 }
