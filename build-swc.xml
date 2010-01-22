@@ -19,15 +19,18 @@
   </compiler>
   <include-classes>
       <class>org.coderepos.text.encoding.Jcode</class>
-      <class>org.coderepos.text.encoding.writers.IUNICODEWriter</class>
+      <class>org.coderepos.text.encoding.writers.IUnicodeWriter</class>
       <class>org.coderepos.text.encoding.writers.UTF8Writer</class>
       <class>org.coderepos.text.encoding.writers.UTF16Writer</class>
       <class>org.coderepos.text.encoding.writers.EUCJPWriter</class>
-      <class>org.coderepos.text.encoding.converters.IUNICODEConverter</class>
+      <class>org.coderepos.text.encoding.converters.IUnicodeConverter</class>
       <class>org.coderepos.text.encoding.converters.UTF8Converter</class>
       <class>org.coderepos.text.encoding.converters.UTF16Converter</class>
       <class>org.coderepos.text.encoding.converters.EUCJPConverter</class>
       <class>org.coderepos.text.encoding.validators.UTF8Validator</class>
+      <class>org.coderepos.text.encoding.tables.E2U</class>
+      <class>org.coderepos.text.encoding.tables.U2E</class>
+      <class>org.coderepos.text.encoding.tables.H2Z</class>
       <class>org.coderepos.text.encoding.rules.IRule</class>
       <class>org.coderepos.text.encoding.rules.Rules</class>
       <class>org.coderepos.text.encoding.rules.IS_ASCII</class>
