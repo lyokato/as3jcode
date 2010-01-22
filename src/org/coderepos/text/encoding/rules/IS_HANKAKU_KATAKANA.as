@@ -8,7 +8,7 @@ package org.coderepos.text.encoding.rules
 
         public function validate(unicode:uint):Boolean
         {
-            // include ff61 - ff65
+            // include ff61 - ff65?
             return (unicode >= 0xff66 && unicode <= 0xff9f);
         }
     }

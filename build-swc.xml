@@ -1,0 +1,46 @@
+<!--
+ To build as3jcode.swc, use
+
+   compc -load-config=build-swc.xml
+   acompc -load-config=build-swc.xml
+
+ That is all.
+-->
+<flex-config>
+  <target-player>10.0.0</target-player>
+  <compiler>
+    <external-library-path>
+      <path-element>${flexlib}/libs/player/10/playerglobal.swc</path-element>
+    </external-library-path>
+    
+    <source-path>
+      <path-element>src</path-element>
+    </source-path>
+  </compiler>
+  <include-classes>
+      <class>org.coderepos.text.encoding.Jcode</class>
+      <class>org.coderepos.text.encoding.writers.IUNICODEWriter</class>
+      <class>org.coderepos.text.encoding.writers.UTF8Writer</class>
+      <class>org.coderepos.text.encoding.writers.UTF16Writer</class>
+      <class>org.coderepos.text.encoding.writers.EUCJPWriter</class>
+      <class>org.coderepos.text.encoding.converters.IUNICODEConverter</class>
+      <class>org.coderepos.text.encoding.converters.UTF8Converter</class>
+      <class>org.coderepos.text.encoding.converters.UTF16Converter</class>
+      <class>org.coderepos.text.encoding.converters.EUCJPConverter</class>
+      <class>org.coderepos.text.encoding.validators.UTF8Validator</class>
+      <class>org.coderepos.text.encoding.rules.IRule</class>
+      <class>org.coderepos.text.encoding.rules.Rules</class>
+      <class>org.coderepos.text.encoding.rules.IS_ASCII</class>
+      <class>org.coderepos.text.encoding.rules.IS_HIRAGANA</class>
+      <class>org.coderepos.text.encoding.rules.IS_HANKAKU_KATAKANA</class>
+      <class>org.coderepos.text.encoding.rules.IS_ZENKAKU_KATAKANA</class>
+  </include-classes>
+  <metadata>
+    <creator>Lyo Kato</creator>
+    <description>http://github.com/lyokato/as3jcode.git</description>
+    <language>EN</language>
+    <title>AS3 Japanese Text Encoding Library</title>
+  </metadata>
+  <output>bin/as3jcode-1_0_0.swc</output>
+</flex-config>
+
