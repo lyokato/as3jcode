@@ -17,6 +17,7 @@ package suite
         {
             var ts:TestSuite = new TestSuite();
             ts.addTest(new H2ZTest("testH2Z"));
+            ts.addTest(new H2ZTest("testZ2H"));
             return ts;
         }
 
@@ -27,6 +28,15 @@ package suite
             assertEquals('h2z', 'アイウエオカキクケコナニヌネノハヒフヘホ', Jcode.h2z("ｱｲｳｴｵｶｷｸｹｺﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎ"));
             assertEquals('h2z', 'アイウエオガギグゲコナニヌネノハヒブヘホ', Jcode.h2z("ｱｲｳｴｵｶﾞｷﾞｸﾞｹﾞｺﾅﾆﾇﾈﾉﾊﾋﾌﾞﾍﾎ"));
             assertEquals('h2z', 'アイウエオカキクケコナニヌネノパヒフヘポ', Jcode.h2z("ｱｲｳｴｵｶｷｸｹｺﾅﾆﾇﾈﾉﾊﾟﾋﾌﾍﾎﾟ"));
+        }
+
+        public function testZ2H():void
+        {
+            assertEquals('h2z 1', Jcode.z2h('アイウエオ'), "ｱｲｳｴｵ");
+            assertEquals('h2z 2', Jcode.z2h('アイヴエオ'), "ｱｲｳﾞｴｵ");
+            assertEquals('h2z 3', Jcode.z2h('アイウエオカキクケコナニヌネノハヒフヘホ'), "ｱｲｳｴｵｶｷｸｹｺﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎ");
+            assertEquals('h2z 4', Jcode.z2h('アイウエオガギグゲコナニヌネノハヒブヘホ'), "ｱｲｳｴｵｶﾞｷﾞｸﾞｹﾞｺﾅﾆﾇﾈﾉﾊﾋﾌﾞﾍﾎ");
+            assertEquals('h2z 5', Jcode.z2h('アイウエオカキクケコナニヌネノパヒフヘポ'), "ｱｲｳｴｵｶｷｸｹｺﾅﾆﾇﾈﾉﾊﾟﾋﾌﾍﾎﾟ");
         }
 
     }

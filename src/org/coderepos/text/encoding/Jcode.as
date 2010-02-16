@@ -10,7 +10,7 @@ package org.coderepos.text.encoding
 
     public class Jcode
     {
-        public static const VERSION:String = "0.0.1";
+        public static const VERSION:String = "0.0.2";
 
         // validation methods
         public static function is_hiragana(utf8string:String):Boolean
@@ -45,6 +45,11 @@ package org.coderepos.text.encoding
         public static function h2z(utf8String:String):String
         {
             return from_utf16(H2Z.h2z(to_utf16(utf8String)));
+        }
+
+        public static function z2h(utf8String:String):String
+        {
+            return from_utf16(Z2H.z2h(to_utf16(utf8String)));
         }
 
         public static function to_utf16(utf8String:String):ByteArray
