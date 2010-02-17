@@ -31,6 +31,7 @@
       <class>org.coderepos.text.encoding.tables.E2U</class>
       <class>org.coderepos.text.encoding.tables.U2E</class>
       <class>org.coderepos.text.encoding.tables.H2Z</class>
+      <class>org.coderepos.text.encoding.tables.Z2H</class>
       <class>org.coderepos.text.encoding.rules.IRule</class>
       <class>org.coderepos.text.encoding.rules.Rules</class>
       <class>org.coderepos.text.encoding.rules.IS_ASCII</class>
@@ -44,6 +45,6 @@
     <language>EN</language>
     <title>AS3 Japanese Text Encoding Library</title>
   </metadata>
-  <output>bin/as3jcode-1_0_0.swc</output>
+  <output>bin/as3jcode-1_0_2.swc</output>
 </flex-config>
 

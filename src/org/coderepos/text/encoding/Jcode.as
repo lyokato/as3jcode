@@ -10,7 +10,7 @@ package org.coderepos.text.encoding
 
     public class Jcode
     {
-        public static const VERSION:String = "0.0.2";
+        public static const VERSION:String = "1.0.2";
 
         // validation methods
         public static function is_hiragana(utf8string:String):Boolean
