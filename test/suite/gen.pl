@@ -2,6 +2,7 @@
 #
 use Encode;
 use MIME::Base64 qw(encode_base64 decode_base64);
+use URI::Escape;
 
 my $indent = 8;
 my $icode = "utf-8";
@@ -39,4 +40,7 @@ for (my $i = 0; $i < scalar(@test); $i++) {
 my $n1 = 0xa0;
 my $sum = 0x60 + ($n1 < 0xe0);
 print $sum;
+print "\n";
+
+print URI::Escape::uri_escape(Encode::encode('euc-jp', Encode::decode('utf-8', 'あいうえお')));
 print "\n";

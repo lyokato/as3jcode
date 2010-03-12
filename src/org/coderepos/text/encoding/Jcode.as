@@ -54,6 +54,7 @@ package org.coderepos.text.encoding
             return (new UTF8Validator(rules)).validate(b);
         }
 
+        // hankaku zenkaku
         public static function h2z(utf8String:String):String
         {
             return from_utf16(H2Z.h2z(to_utf16(utf8String)));
@@ -62,6 +63,78 @@ package org.coderepos.text.encoding
         public static function z2h(utf8String:String):String
         {
             return from_utf16(Z2H.z2h(to_utf16(utf8String)));
+        }
+
+        public static function decodeURIComponentToBytes(src:String,
+            plus2space:Boolean=true):ByteArray
+        {
+            var char:String;
+            var next:String;
+            var i:int = 0;
+            var len:int = src.length;
+            var decoded:ByteArray = new ByteArray();
+            while (i < len) {
+                char = src.charAt(i++);
+                if (char == "+") {
+                    if (plus2space)
+                        decoded.writeByte(0x20); // SPACE
+                    else
+                        decoded.writeByte(0x2b); // +
+                } else if (char == "%" && i + 2 <= len) {
+                    next = src.substring(i, i+2);
+                    i += 2;
+                    if (next.match(/^[0-9a-zA-Z]{2}$/) != null) {
+                        decoded.writeByte(parseInt(next, 16));
+                    } else {
+                        decoded.writeUTFBytes(char + next);
+                    }
+                } else {
+                    decoded.writeUTFBytes(char);
+                }
+            }
+            decoded.position = 0;
+            return decoded;
+        }
+
+        public static function encodeURIComponentBytes(bytes:ByteArray,
+            space2plus:Boolean=true, useRFC3986:Boolean=false):String
+        {
+            var encoded:String = "";
+            var c:uint;
+            while (bytes.bytesAvailable > 0) {
+                c = bytes.readUnsignedByte();
+                if (c == 0x20) { // SPACE
+                    if (space2plus) {
+                        encoded += "+";
+                    } else {
+                        encoded += "%20";
+                    }
+                } else if (
+                       (c >= 0x30 && c <= 0x39) // 0 - 9
+                    || (c >= 0x41 && c <= 0x5a) // A - Z
+                    || (c >= 0x61 && c <= 0x7a) // A - Z
+                    || c == 0x2d // -
+                    || c == 0x5f // _
+                    || c == 0x2e // .
+                    || c == 0x7e // ~
+                    ) {
+                    encoded += "%" + Number(c).toString(16).toUpperCase()
+                } else if (
+                       c == 0x21 // !
+                    || c == 0x5c // \
+                    || c == 0x28 // (
+                    || c == 0x29 // )
+                    ) {
+                    if (useRFC3986) {
+                        encoded += "%" + Number(c).toString(16).toUpperCase()
+                    } else {
+                        encoded += String.fromCharCode(c);
+                    }
+                } else {
+                    encoded += "%" + Number(c).toString(16).toUpperCase()
+                }
+            }
+            return encoded;
         }
 
         public static function to_utf16(utf8String:String):ByteArray

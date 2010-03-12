@@ -45,6 +45,6 @@
     <language>EN</language>
     <title>AS3 Japanese Text Encoding Library</title>
   </metadata>
-  <output>bin/as3jcode-1_0_2.swc</output>
+  <output>bin/as3jcode-1_0_3.swc</output>
 </flex-config>
 
